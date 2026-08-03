@@ -877,11 +877,11 @@ function checkEnum(
 // "bun .../aidlc-directive.ts validates the 10 kinds".
 if (import.meta.main) {
   // One well-formed example per kind. run-stage mirrors the engine design's example
-  // directive verbatim (application-design); the others follow the same catalogue table.
+  // directive verbatim (domain-design); the others follow the same catalogue table.
   const examples: Directive[] = [
     {
       kind: "load-steering",
-      stage: "application-design",
+      stage: "domain-design",
       bundle: "sha256:0123456789abcdef",
       part: 1,
       parts: 2,
@@ -892,7 +892,7 @@ if (import.meta.main) {
     },
     {
       kind: "run-stage",
-      stage: "application-design",
+      stage: "domain-design",
       phase: "inception",
       lead_agent: "aidlc-architect-agent",
       support_agents: ["aidlc-aws-platform-agent", "aidlc-design-agent"],
@@ -903,9 +903,9 @@ if (import.meta.main) {
         ".claude/agents/aidlc-design-agent.md",
       ],
       gate: true,
-      memory_path: "aidlc-docs/inception/application-design/memory.md",
+      memory_path: "aidlc-docs/inception/domain-design/memory.md",
       consumes: ["aidlc-docs/inception/requirements/requirements.md"],
-      produces: ["aidlc-docs/inception/application-design/decisions.md"],
+      produces: ["aidlc-docs/inception/domain-design/components.md"],
       rules_in_context: [
         "aidlc-org.md",
         "aidlc-team.md",
@@ -916,7 +916,7 @@ if (import.meta.main) {
         "Could not read optional knowledge file example.md; fix its permissions.",
       ],
       sensors_applicable: ["required-sections", "upstream-coverage"],
-      stage_file: ".claude/aidlc-common/stages/inception/application-design.md",
+      stage_file: ".claude/aidlc-common/stages/inception/domain-design.md",
       next_stage: "Units Generation",
     },
     {
@@ -948,9 +948,9 @@ if (import.meta.main) {
     },
     {
       kind: "present-gate",
-      stage: "application-design",
+      stage: "domain-design",
       phase: "inception",
-      memory_path: "aidlc-docs/inception/application-design/memory.md",
+      memory_path: "aidlc-docs/inception/domain-design/memory.md",
     },
     { kind: "ask", question: "Resume from the last checkpoint, or start fresh?" },
     { kind: "print", message: "AIDLC framework version 0.0.0" },
@@ -973,7 +973,7 @@ if (import.meta.main) {
       gate: GATE_UNRESOLVED,
       memory_path: "aidlc-docs/construction/{unit-name}/functional-design/memory.md",
       consumes: [],
-      produces: ["aidlc-docs/construction/{unit-name}/functional-design/business-logic-model.md"],
+      produces: ["aidlc-docs/construction/{unit-name}/functional-design/functional-spec.md"],
       rules_in_context: ["aidlc-org.md", "aidlc-phase-construction.md"],
       sensors_applicable: ["required-sections"],
       stage_file: ".claude/aidlc-common/stages/construction/functional-design.md",
